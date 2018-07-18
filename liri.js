@@ -56,12 +56,18 @@ function tweets(){
             console.log("Tweets: " + tweets[i].text +" Created at " + tweets[i].created_at + ".");
             console.log("---------------------------------------------------------------");
             //console.log(tweets);
+
+            //append data to log.txt file
+            fs.appendFile('log.txt', "Tweets:" + tweets[i].text +  "Created at " + tweets[i].created_at + "." +"\n", function(err){
+
+                if(err) throw err;
+            })
         }
       }
       else{
         return console.log('Error occurred: ' + err);
       }
-    });  
+    });    
 }
 
 function spotifySong(userInputs){
@@ -69,7 +75,7 @@ function spotifySong(userInputs){
         userInputs = 'The Sign Ace of Base'
     }
     var spotify = new Spotify(keys.spotify);
-    spotify.search({ type: 'track', query: userInputs,limit:1}, function(err, data) {
+    spotify.search({ type: 'track', query: userInputs,limit:3}, function(err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }            
@@ -81,7 +87,13 @@ function spotifySong(userInputs){
         console.log("Preview URL: " + songsData.preview_url);
         console.log("Album: "+ songsData.album.name);
         console.log('--------------------------------------------------');
-        //console.log(JSON.stringify(data.tracks.items,null, 4));     
+        //console.log(JSON.stringify(data.tracks.items,null, 4)); 
+
+        //append data to log.txt file using template literals (enclosed by the back-tick(``))    
+        fs.appendFile('log.txt',`\nArtist(s): ${songsData.artists[0].name} \nSong: ${songsData.name} \nPreview URL: ${songsData.preview_url} \nAlbum: ${songsData.album.name}\n\n`,function(err){
+
+            if(err) throw err;
+        });
     });
 }
 
@@ -90,6 +102,10 @@ function movie(movie){
         movie = 'Mr.nobody';
         console.log("\nIf you haven't watched 'Mr. Nobody' then you should: http://www.imdb.com/title/tt0485947/")
         console.log("\nIt's on Netflix!")
+        fs.appendFile('log.txt',"\nIf you haven't watched 'Mr. Nobody' then you should: http://www.imdb.com/title/tt0485947/\nIt's on Netflix!\n",function(err){
+
+            if(err) throw err;    
+        });
     }
     var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&tomatoes=true&apikey=trilogy";
     //console.log(queryUrl);
@@ -108,6 +124,12 @@ function movie(movie){
         console.log("Language: " + body.Language);  
         console.log("\nPlot: " + body.Plot);
         console.log("\nActors: " + body.Actors);
+
+        //append data to log.txt file
+        fs.appendFile('log.txt',`\nTitle: ${body.Title}\nRelease Year: ${body.Year}\nIMDB rating: ${body.imdbRating}\nRotten Tomatoes rating: ${body.tomatoRating}\nCountry: ${body.Country}\nLanguage: ${body.Language}\nPlot: ${body.Plot}\nActors: ${body.Actors}\n\n`,function(err){
+
+            if(err) throw err;
+        });
     }
     });
 }
