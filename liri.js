@@ -44,7 +44,7 @@ switch(command){
     break;
 
     default:
-    console.log("Please enter one of these commands: my-tweets, spotify-this-song, movie-this, do-what-it-says");
+    console.log("Enter one of these commands: my-tweets, spotify-this-song, movie-this, do-what-it-says");
     break;
 }
 
@@ -58,7 +58,7 @@ function tweets(){
             //console.log(tweets);
 
             //append data to log.txt file
-            fs.appendFile('log.txt', "Tweets:" + tweets[i].text +  "Created at " + tweets[i].created_at + "." +"\n", function(err){
+            fs.appendFile('log.txt', "\nTweets:" + tweets[i].text +  "Created at " + tweets[i].created_at + "." +"\n", function(err){
 
                 if(err) throw err;
             })
@@ -89,8 +89,8 @@ function spotifySong(userInputs){
         console.log('--------------------------------------------------');
         //console.log(JSON.stringify(data.tracks.items,null, 4)); 
 
-        //append data to log.txt file using template literals (enclosed by the back-tick(``))    
-        fs.appendFile('log.txt',`\nArtist(s): ${songsData.artists[0].name} \nSong: ${songsData.name} \nPreview URL: ${songsData.preview_url} \nAlbum: ${songsData.album.name}\n\n`,function(err){
+        //append data to log.txt file   
+        fs.appendFile('log.txt',"\nArtist(s): " +songsData.artists[0].name + "\nSong: " + songsData.name + "\nPreview URL: " + songsData.preview_url + "\nAlbum: "+ songsData.album.name + "\n",function(err){
 
             if(err) throw err;
         });
@@ -126,7 +126,7 @@ function movie(movie){
         console.log("\nActors: " + body.Actors);
 
         //append data to log.txt file
-        fs.appendFile('log.txt',`\nTitle: ${body.Title}\nRelease Year: ${body.Year}\nIMDB rating: ${body.imdbRating}\nRotten Tomatoes rating: ${body.tomatoRating}\nCountry: ${body.Country}\nLanguage: ${body.Language}\nPlot: ${body.Plot}\nActors: ${body.Actors}\n\n`,function(err){
+        fs.appendFile('log.txt',"\nTitle: " + body.Title + "\nRelease Year: " + body.Year + "\nIMDB rating: " + body.imdbRating + "\nRotten Tomatoes rating: " + body.tomatoRating + "\nCountry: " + body.Country + "\nLanguage: " + body.Language +"\nPlot: " + body.Plot +"\nActors: " + body.Actors+"\n",function(err){
 
             if(err) throw err;
         });

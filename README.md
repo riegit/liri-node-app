@@ -7,7 +7,7 @@
  LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 
 * If you want to clone this app from github and run it , you would need to supply your own `.env`      file for it to work.
-  In order to execute this application you would need to create a file named `.env`under the root of the application folder, add the following to it, replacing the values with your API keys (no quotes) once you have them: .env file looks like below.
+  In order to execute this app you would need to create a file named `.env`under the root of the application folder, add the following to it, replacing the values with your API keys (no quotes) once you have them: .env file looks like below.
   
 ```js
 # Spotify API keys
