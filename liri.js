@@ -137,6 +137,6 @@ function doIt(){
     fs.readFile("random.txt","utf8",function(err,data){
         var dataArr = data.split(",");
         //console.log(dataArr);
-        spotifySong(dataArr[1]);
-    })
+        spotifySong(dataArr[1]);   
+    });
 }
